@@ -966,4 +966,19 @@ app.get(
             FROM products
             WHERE id = $1
             FOR UPDATE
-            
+            initDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(
+        `SHOPFLIX server running on port ${PORT}`
+      );
+    });
+  })
+  .catch((error) => {
+    console.error(
+      "Database initialization failed:",
+      error
+    );
+
+    process.exit(1);
+  });
